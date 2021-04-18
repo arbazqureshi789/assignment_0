@@ -4,13 +4,19 @@ import { DbOperations } from '../migrations/connection';
 import { Email } from '../entity/User';
 
 export const queryResolver = {
-    async register({ email }: {
+    async registerEmail({ email }: {
         email: string
     }, context: any) {
-        const db = new DbOperations();
+        return{
+            id:uuid(),
+            email:email
+        };
     },
 
     async allRegisteredEmail() {
-
+        return [{
+            id:uuid(),
+            email:"arbazqureshi@gmail.com"
+        }];
     }
 }

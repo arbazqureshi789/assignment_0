@@ -17,7 +17,11 @@ exports.querySchema = graphql_1.buildSchema(`
     union User = RegisteredUser | Error
 
     type rootQueries{
-        register(email:String!):RegisteredUser!
+        registerEmail(email:String!):RegisteredUser!
         allRegisteredEmail:[RegisteredUser]!
+    }
+
+    schema {
+        query: rootQueries
     }
 `);
