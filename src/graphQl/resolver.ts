@@ -7,16 +7,15 @@ export const queryResolver = {
     async registerEmail({ email }: {
         email: string
     }, context: any) {
-        return{
-            id:uuid(),
-            email:email
-        };
+
+        const db = new DbOperations();
+        const registeredUser = await db.registerEmail(email);
+        return registeredUser;
     },
 
     async allRegisteredEmail() {
-        return [{
-            id:uuid(),
-            email:"arbazqureshi@gmail.com"
-        }];
+        const db = new DbOperations();
+        const allEmails = await db.allRegisteredEmail();
+        return allEmails;
     }
 }

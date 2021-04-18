@@ -1,18 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.queryResolver = void 0;
-const uuid_1 = require("uuid");
+const connection_1 = require("../migrations/connection");
 exports.queryResolver = {
     async registerEmail({ email }, context) {
-        return {
-            id: uuid_1.v4(),
-            email: email
-        };
+        const db = new connection_1.DbOperations();
+        const registeredUser = await db.registerEmail(email);
+        return registeredUser;
     },
     async allRegisteredEmail() {
-        return [{
-                id: uuid_1.v4(),
-                email: "arbazqureshi@gmail.com"
-            }];
+        const db = new connection_1.DbOperations();
+        const allEmails = await db.allRegisteredEmail();
+        return allEmails;
     }
 };
